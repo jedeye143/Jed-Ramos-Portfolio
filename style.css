@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap');
+
+/* --- CUSTOM THEME VARIABLES --- */
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Space Grotesk', sans-serif;
+  --bg-color: #030303;
+  --text-color: #ffffff;
+  --text-muted: #888888;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* --- SCROLL LAYOUT (Continuous Natural Flow) --- */
+.main-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* --- SECTION PADDING (Responsive Tight Spacing) --- */
+.section-padding {
+  padding-top: 3rem;    /* py-12 mobile */
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-top: 4rem;  /* py-16 small */
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 5rem;  /* py-20 medium */
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 6rem;  /* py-24 large */
+    padding-bottom: 6rem;
+  }
+}
+
+/* --- BACKGROUND DECORATION --- */
+.bg-grid-ambient {
+  position: absolute;
+  inset: 0;
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-dot-ambient {
+  position: absolute;
+  inset: 0;
+  background-size: 20px 20px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Hero Background Logo Animation */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(-5%) scale(1);
+    opacity: 0.03;
+  }
+  50% {
+    transform: translateY(-3%) scale(1.02);
+    opacity: 0.05;
+  }
+}
+
+.hero-bg-logo-text {
+  animation: logoFloat 15s ease-in-out infinite;
+}
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor-dot,
+.custom-cursor-outline {
+  display: none;
+}
+
+@media (pointer: fine) and (min-width: 1024px) {
+  .custom-cursor-dot,
+  .custom-cursor-outline {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+  }
+  .custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+  }
+  .custom-cursor-outline {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Hover State */
+  body.cursor-hover .custom-cursor-dot {
+    background-color: #000;
+    width: 8px;
+    height: 8px;
+  }
+  body.cursor-hover .custom-cursor-outline {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.95);
+    mix-blend-mode: difference;
+    border-color: transparent;
+  }
+}
+
+/* --- TYPOGRAPHY --- */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-stroke-title {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
+  transition: -webkit-text-stroke 0.4s, color 0.4s;
+}
+
+.text-stroke-title:hover {
+  color: #fff;
+  -webkit-text-stroke: 1.5px transparent;
+}
+
+/* Mobile text stroke adjustment */
+@media (max-width: 768px) {
+  .text-stroke-title {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* --- CAPSULE BUTTONS --- */
+.capsule-btn-fill {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 9999px;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+.capsule-btn-fill:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.capsule-btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: 9999px;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+.capsule-btn-outline:hover {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* --- SIDEBAR ACTIVE DOTS --- */
+.sidebar-link-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidebar-dot {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar-link-container.active .sidebar-dot {
+  background-color: #ffffff;
+  transform: scale(1.5);
+  box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.8);
+}
+
+.sidebar-link-container.active a {
+  color: #ffffff !important;
+}
+
+/* --- CARDS WITH BORDERS --- */
+.border-card {
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.005);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.border-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -12px rgba(255, 255, 255, 0.08);
+}
+
+/* --- LINK UNDERLINE MICRO-INTERACTION --- */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* --- ROTATING GLOBE --- */
+@keyframes rotateGlobe {
+  0% {
+    transform: rotateX(15deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(15deg) rotateY(360deg);
+  }
+}
+
+.globe-sphere {
+  animation: rotateGlobe 22s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* --- REVEAL UP --- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- NOISE OVERLAY --- */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  z-index: 99;
+  pointer-events: none;
+}
+
+/* --- INTERACTIVE WORKSTATION CONSOLE --- */
+.project-manifest-item {
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-manifest-item:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+.project-manifest-item.active {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.project-manifest-item.active span {
+  color: #ffffff !important;
+}
+
+/* Bento Card specific enhancements */
+.project-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card.active {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.02);
+}
+.project-card.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 2px;
+  background-color: #ffffff;
+}
+
+/* Float Thumbnail Reveal on Hover */
+.project-card-thumbnail-reveal {
+  position: absolute;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  transform: translate(15px, -50%) scale(0.9);
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 99;
+  overflow: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover .project-card-thumbnail-reveal {
+  opacity: 1;
+  transform: translate(15px, -50%) scale(1);
+}
+
+/* Category Filter Buttons Active state */
+.project-filter-btn.active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+/* Custom scrollbar for manifest */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+}
+
+/* CRT Scanlines and Screen Glitch Effect */
+.bg-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+}
+
+@keyframes consoleGlitch {
+  0% { opacity: 0.5; filter: brightness(1.3) contrast(1.1) blur(0.3px); }
+  30% { opacity: 0.85; filter: brightness(0.95) contrast(0.95); }
+  60% { opacity: 0.7; filter: brightness(1.15) contrast(1.05) blur(0.1px); }
+  100% { opacity: 1; filter: none; }
+}
+.console-transition {
+  animation: consoleGlitch 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.console-tab-btn-active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* --- SERVICE SELECTOR HUD ROWS --- */
+.service-selector-row {
+  border-left: 3px solid transparent;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.service-selector-row.active {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left-color: #ffffff;
+}
+.service-selector-row.active .service-title {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+.service-selector-row.active .service-arrow {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+/* --- PLAYGROUND WORKSPACE --- */
+.playground-tab {
+  border-left: 3px solid transparent;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.playground-tab.active {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left-color: #ffffff;
+}
+.playground-tab.active h3 {
+  color: #ffffff !important;
+  transform: translateX(4px);
+}
+.playground-tab.active span.bg-neutral-800 {
+  background-color: #ffffff !important;
+}
+
+/* Decal Stamp Styling */
+.decal-stamped {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: monospace;
+  font-weight: bold;
+  user-select: none;
+  pointer-events: none;
+  animation: stampScale 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes stampScale {
+  0% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+}
+
+/* --- TRANSMISSION HUB FLOATING LABELS --- */
+.floating-label-active {
+  transform: translateY(-26px) scale(0.8);
+  color: #ffffff !important;
+  background-color: #0d0d0d;
+  padding: 0 4px;
+}
+
+/* Objective Button Active State */
+.objective-btn.active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+.objective-btn.active span:last-child {
+  background-color: #000000 !important;
+}
+
+/* Custom Scrollbar for Terminal Logs */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Shake Animation for incorrect password entry */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+  20%, 40%, 60%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+
+/* --- RESPONSIVE ENHANCEMENTS --- */
+
+/* Improve mobile form inputs */
+@media (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Mobile landscape optimizations */
+@media (max-width: 1023px) and (orientation: landscape) {
+  #home {
+    min-height: 100vh;
+  }
+}
