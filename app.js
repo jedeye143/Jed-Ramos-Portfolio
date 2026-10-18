@@ -66,6 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- HERO LIVE TIME TELEMETRY ---
+  const heroLiveTime = document.getElementById('hero-live-time');
+  if (heroLiveTime) {
+    const updateTime = () => {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Manila', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      heroLiveTime.textContent = now.toLocaleTimeString('en-GB', options) + ' PHT';
+    };
+    updateTime();
+    setInterval(updateTime, 1000);
+  }
+
 
   // --- MOBILE NAV TOGGLE ---
   const mobileNavToggle = document.getElementById('mobile-nav-toggle');
@@ -177,550 +189,665 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // --- INTERACTIVE PORTFOLIO WORKSTATION ---
-  const manifestItems = document.querySelectorAll('.project-manifest-item');
-  const consoleTabName = document.getElementById('console-tab-name');
-  const consoleProjectImg = document.getElementById('console-project-img');
-  const consoleProjectTerminal = document.getElementById('console-project-terminal');
-  const consoleProjectIframe = document.getElementById('console-project-iframe');
-  const consoleProjectLoader = document.getElementById('console-project-loader');
-  const consoleMetaSector = document.getElementById('console-meta-sector');
-  const consoleMetaPlatform = document.getElementById('console-meta-platform');
-  const consoleMetaStatus = document.getElementById('console-meta-status');
-  const consoleProjectTitle = document.getElementById('console-project-title');
-  const consoleProjectDesc = document.getElementById('console-project-desc');
-  const consoleProjectStack = document.getElementById('console-project-stack');
-  const consoleBtnRepo = document.getElementById('console-btn-repo');
-  const consoleBtnLive = document.getElementById('console-btn-live');
-  const consoleScreenContent = document.getElementById('console-screen-content');
 
-  // Interactive tab switcher buttons
-  const consoleTabPreview = document.getElementById('console-tab-preview');
-  const consoleTabVisit = document.getElementById('console-tab-visit');
-  const consoleTabImage = document.getElementById('console-tab-image');
-  const consoleTabTerminalBtn = document.getElementById('console-tab-terminal');
+  // --- FEATURED WORK SECTION (WORKSTATION DECK DESIGN) ---
 
   const projectData = {
-    'drawforge': {
-      name: 'DrawForge',
-      tab: 'DrawForge.io',
-      sector: 'MULTIPLAYER GAME / WEBSOCKET',
-      platform: 'DEPLOYED v1.0',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'A real-time multiplayer drawing game featuring two distinct game modes: Scribble It (drawing & guessing with character abilities) and Drawing Competition (simultaneous battles with voting), detailed canvas toolkit, and persistent postgres session storage.',
-      stack: ['Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Tailwind CSS', 'Howler.js'],
-      repo: '',
-      live: 'https://drawforge.onrender.com/',
-      img: '',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ npm run start</div>
-          <div>[DrawForge] Initializing backend application clusters...</div>
-          <div class="text-[#27c93f]">[OK] Connected to PostgreSQL DB on Render.</div>
-          <div>[SOCKET] Socket.IO server running on PORT 3000.</div>
-          <div class="text-white">[ROOMS] Active Matchmaking Queue: 5 Lobbies | 24 Players active.</div>
-          <div class="text-neutral-500">// Heartbeat: STABLE | Database Auto-Cleanup Active //</div>
-          <div class="text-white">[GAME] Match ID 94a2 started: Mode [Scribble It]</div>
-        </div>
-      `
-    },
     'bantay-pusta': {
       name: 'Bantay Pusta',
-      tab: 'BantayPusta.exe',
-      sector: 'RECOVERY & TELEMETRY',
-      platform: 'WEB // DESKTOP',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
+      tab: 'BANTAYPUSTA.EXE',
+      sector: 'ANTI-ILLEGAL GAMBLING SYSTEM',
+      deckCategory: 'WEB APPLICATION',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Full-Stack Developer',
+      year: '2024',
+      platform: 'Web // Desktop',
       desc: 'Former developer of the website, API, and desktop app. A comprehensive multi-platform gambling addiction recovery system providing real-time system-level blocking, bet-free streak telemetry, emergency response, and community tracking.',
       stack: ['ASP.NET Core 8', 'WPF', 'SQL Server', 'SignalR', 'Manifest V3'],
       repo: '',
       live: '',
       img: 'project ss/banatay pusta.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ dotnet run --project BantayPusta.Web</div>
-          <div>[SYS_INFO] Initializing Bantay Pusta core kernel engine v2.4.1...</div>
-          <div class="text-[#27c93f]">[OK] Connected to Azure DB. Sync latency: 14ms.</div>
-          <div>[TELEMETRY] Listening for WPF agent heartbeats on SignalR hub...</div>
-          <div class="text-white">[AGENTS] 142 clients active | 3 system blocks triggered.</div>
-          <div class="text-neutral-500">// Engine health: 99.8% | Memory footprint: 184MB //</div>
-        </div>
-      `
+    },
+    'nathaniel-joy': {
+      name: 'Wedding Website Design',
+      tab: 'WEDDINGDESIGN.IO',
+      sector: 'EDITORIAL WEDDING WEB DESIGN',
+      deckCategory: 'WEB EXPERIENCE',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Web Designer & Dev',
+      year: '2024',
+      platform: 'Production Web App',
+      desc: 'An elegant and romantic wedding website design featuring beautiful layouts, event details, RSVP sections, and smooth transitions crafted for a memorable experience.',
+      stack: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'],
+      repo: '',
+      live: 'https://wedding-website-design-mauve.vercel.app/',
+      img: '', // No accurate screenshot — auto-embeds live site via iframe
+    },
+    'anns-store': {
+      name: "Ann's Store",
+      tab: 'ANNS-STORE.ONLINE',
+      sector: 'E-COMMERCE & GROCERY DELIVERY',
+      deckCategory: 'WEB APPLICATION',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Full-Stack Developer',
+      year: '2024',
+      platform: 'Production Web App',
+      desc: 'Quick & Simple Fresh Store Reservation and Order Management. A responsive e-commerce web platform for fresh groceries, meats, fruits, and essentials with real-time order tracking, rider logistics, and automated checkout.',
+      stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      repo: '',
+      live: 'https://anns-store-delivery.vercel.app/',
+      img: 'project ss/anns-store.png',
+    },
+    'drawforge': {
+      name: 'DrawForge',
+      tab: 'DRAWFORGE.IO',
+      sector: 'MULTIPLAYER GAME / WEBSOCKET',
+      deckCategory: 'REAL-TIME APPLICATION',
+      status: 'Online',
+      statusClass: 'online',
+      role: 'Lead Game Engineer',
+      year: '2024',
+      platform: 'Cloud Web Platform',
+      desc: 'A real-time multiplayer drawing game featuring two distinct game modes: Scribble It (drawing & guessing with character abilities) and Drawing Competition (simultaneous battles with voting), detailed canvas toolkit, and persistent postgres session storage.',
+      stack: ['Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Tailwind CSS', 'Howler.js'],
+      repo: '',
+      live: 'https://drawforge.onrender.com/',
+      img: 'project ss/drawforge.png',
+    },
+    'dawson-gallery': {
+      name: 'Dawson Wells Gallery',
+      tab: 'DAWSONGALLERY.ART',
+      sector: 'MODERN & CONTEMPORARY ART GALLERY',
+      deckCategory: 'WEB EXPERIENCE',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Full-Stack Developer',
+      year: '2024',
+      platform: 'Production Web App',
+      desc: 'Premier international gallery platform specializing in Modern and Contemporary Art across photography, oil paintings, drawings, ceramics, and prints with curated exhibition showcases and artist profiles.',
+      stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      repo: '',
+      live: 'https://dawsongallery.vercel.app/',
+      img: 'project ss/dawson-gallery.jpg',
+    },
+    'touch-god': {
+      name: 'Touch By God Meet',
+      tab: 'TOUCHBYGOD.RTC',
+      sector: 'COLLABORATIVE VIDEO PLATFORM',
+      deckCategory: 'COMMUNICATION SUITE',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'WebRTC Engineer',
+      year: '2024',
+      platform: 'WebRTC / Cloud Node',
+      desc: 'Collaborative web application featuring WebRTC video calling, room structures, and real-time chat operations with ultra-low latency peer connections.',
+      stack: ['HTML', 'Tailwind', 'JavaScript', 'WebRTC', 'PeerJS'],
+      repo: '',
+      live: 'https://touchbygodmeet.vercel.app/',
+      img: 'project ss/touch-god.png',
+    },
+    'smart-gate': {
+      name: 'Smart Gate',
+      tab: 'SMARTGATE.IOT',
+      sector: 'IOT ATTENDANCE ANALYTICS',
+      deckCategory: 'EMBEDDED TELEMETRY',
+      status: 'Offline',
+      statusClass: 'offline',
+      role: 'IoT & Telemetry Dev',
+      year: '2023',
+      platform: 'Hardware + Dashboard',
+      desc: 'Data visualization of student entry with interactive analytics. Real-time attendance monitoring, customizable reports, trend analysis, and school administrator analytics for data-driven decisions.',
+      stack: ['HTML / Tailwind', 'JavaScript', 'Chart.js', 'IoT Hardware'],
+      repo: '',
+      live: '',
+      img: 'project ss/caps.jpg',
     },
     'barangay-health': {
       name: 'Barangay Health Center',
-      tab: 'HealthPortal.web',
-      sector: 'RURAL HEALTH / RECORDS',
-      platform: 'PRODUCTION v1.0',
-      status: 'STABLE',
-      statusClass: 'text-[#27c93f]',
+      tab: 'HEALTHCENTER.MED',
+      sector: 'MEDICAL RECORDS PLATFORM',
+      deckCategory: 'ENTERPRISE SYSTEM',
+      status: 'Stable',
+      statusClass: 'stable',
+      role: 'Backend & Architecture',
+      year: '2024',
+      platform: 'Enterprise Web System',
       desc: 'A full-stack medical records and queue platform designed for rural health units. Solves doctor accountability across multiple municipalities and eliminates paper records with digital triage.',
-      stack: ['ASP.NET Core 9.0', 'C#', 'Bootstrap 5', 'Clean Arch'],
+      stack: ['ASP.NET Core 9.0', 'C#', 'Bootstrap 5', 'Clean Architecture', 'SQL Server'],
       repo: '',
       live: '',
       img: 'project ss/health center.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ health-center --mode=production --port=9000</div>
-          <div>[SYS_INFO] Loading Patient Records Database module...</div>
-          <div class="text-[#27c93f]">[OK] Decrypted patient ledger. 2,401 medical files checked.</div>
-          <div>[QUEUE] Triage routing queue initialized for Barangay Health Unit...</div>
-          <div class="text-white">[TELEMETRY] Doctor accountability portal online.</div>
-          <div class="text-neutral-500">// System state: STABLE | Active queues: 4 //</div>
-        </div>
-      `
     },
     'certicore': {
-      name: 'CertiCore',
-      tab: 'CertiCoreLMS.exe',
-      sector: 'ACADEMIC LMS / PDF GEN',
-      platform: 'LMS CORE',
-      status: 'STABLE',
-      statusClass: 'text-[#27c93f]',
+      name: 'CertiCore LMS',
+      tab: 'CERTICORE.LMS',
+      sector: 'LEARNING MANAGEMENT SYSTEM',
+      deckCategory: 'ENTERPRISE PORTAL',
+      status: 'Stable',
+      statusClass: 'stable',
+      role: 'Full-Stack Developer',
+      year: '2024',
+      platform: 'Web Application',
       desc: 'A comprehensive learning management system incorporating real-time assessments, discussion forums, progress monitoring, and automated professional PDF certificate generation.',
       stack: ['ASP.NET Core 8 MVC', 'EF Core', 'iText7 PDF', 'SignalR'],
       repo: '',
       live: '',
       img: 'project ss/certicoredashboard.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ dotnet run --project CertiCore.LMS</div>
-          <div>[SYS_INFO] Starting Learning Management System core engine...</div>
-          <div class="text-[#27c93f]">[OK] Database connection active.</div>
-          <div>[PDF_GEN] iText7 automated certificate renderer online...</div>
-          <div class="text-[#27c93f]">[OK] PDF output templates compiled successfully.</div>
-          <div class="text-white">[LMS] Assessments compiler verified. 12 courses online.</div>
-        </div>
-      `
     },
     'ojt-war': {
       name: 'OJT Accomplishment Report',
-      tab: 'OJT_WAR_System.exe',
-      sector: 'OJT MONITORING / REPORTS',
-      platform: 'FULL STACK',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
+      tab: 'OJTWAR.PORTAL',
+      sector: 'MONITORING & REPORTS SYSTEM',
+      deckCategory: 'MANAGEMENT PLATFORM',
+      status: 'Online',
+      statusClass: 'online',
+      role: 'Frontend & Database',
+      year: '2023',
+      platform: 'Web Application',
       desc: 'A full-stack WAR solution with real-time monitoring of OJT tasks. Streamlines submitting and tracking weekly accomplishment reports, featuring automated notifications, progress tracking, and supervisor analytics.',
-      stack: ['HTML / Tailwind', 'PHP', 'JavaScript'],
+      stack: ['HTML / Tailwind', 'PHP', 'JavaScript', 'MySQL'],
       repo: '',
       live: '',
       img: 'project ss/war.jpeg',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ php -S localhost:8000</div>
-          <div>[WAR_SYS] Weekly Accomplishment Report system active.</div>
-          <div class="text-[#27c93f]">[OK] Connected to PHP MySQL database.</div>
-          <div>[CRON] Weekly report automated email reminder schedule active.</div>
-          <div class="text-white">[ROUTER] GET /ojt/report/submit - 200 OK</div>
-          <div class="text-neutral-500">// Student progress tracker online //</div>
-        </div>
-      `
-    },
-    'smart-gate': {
-      name: 'Smart Gate Dashboard',
-      tab: 'SmartGateAnalytics.exe',
-      sector: 'IOT TELEMETRY / DOCK',
-      platform: 'DASHBOARD',
-      status: 'OFFLINE',
-      statusClass: 'text-neutral-500',
-      desc: 'Data visualization of student entry with interactive analytics. Real-time attendance monitoring, customizable reports, trend analysis, and school administrator analytics for data-driven decisions.',
-      stack: ['HTML / Tailwind', 'JavaScript'],
-      repo: '',
-      live: '',
-      img: 'project ss/caps.jpg',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ gate-analytics --service=watcher --port=8080</div>
-          <div>[IOT_CORE] Scanning for smart-gate serial interfaces...</div>
-          <div class="text-neutral-500">[WARN] Gate hardware interface offline. Falling back to data lake.</div>
-          <div class="text-[#27c93f]">[OK] Analytics dashboard online. Interactive charts compiled.</div>
-          <div class="text-white">[API] Compiled trend logs for 1,450 student entries.</div>
-        </div>
-      `
-    },
-    'coffee-website': {
-      name: 'Static Coffee Website',
-      tab: 'CoffeePortal.web',
-      sector: 'CREATIVE SHOWCASE',
-      platform: 'WEB SHOWCASE',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'An elegant website for Coffee Lovers with responsive design. Showcases blends, brewing methods, and coffee-related content, featuring an interactive menu and tips blog.',
-      stack: ['HTML / CSS', 'JavaScript'],
-      repo: '',
-      live: '',
-      img: 'project ss/coffee.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ live-server --port=5500</div>
-          <div>[LIVE_SERVER] Spawning web server instance...</div>
-          <div class="text-[#27c93f]">[OK] Listening on http://localhost:5500</div>
-          <div>[WATCHER] Tracking changes in index.html, style.css, menu.js...</div>
-          <div class="text-neutral-500">// Performance: Speed index 0.6s | LCP 0.8s //</div>
-        </div>
-      `
-    },
-    'library-mgmt': {
-      name: 'Library Database',
-      tab: 'LibraryEngine.sql',
-      sector: 'LMS CORE',
-      platform: 'DEPLOYED',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'Digital book catalog tracking database system managing user borrow sequences, inventory levels, and check-ins.',
-      stack: ['HTML', 'Tailwind', 'JavaScript'],
-      repo: '',
-      live: 'https://library-managementjenelo.vercel.app/',
-      img: 'project ss/library-mgmt.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ database_init --service=library-mgmt</div>
-          <div>[SYS_INFO] Connecting to postgres://localhost:5432/library_db...</div>
-          <div class="text-[#27c93f]">[OK] Connected. Latency: 4ms.</div>
-          <div>[SYS_INFO] Loading schemas (books, users, transactions, catalogs)...</div>
-          <div class="text-[#27c93f]">[OK] 4 schemas compiled. indexes built.</div>
-          <div>$ npm start</div>
-          <div class="text-white">&gt; library-mgmt-engine@1.0.0 start /app</div>
-          <div class="text-white">&gt; node src/server.js</div>
-          <div class="text-neutral-500">// Server executing on PORT 8080 //</div>
-          <div class="text-neutral-500">// Telemetry: Heap size: 34MB | Active sockets: 12 //</div>
-          <div class="text-white">[API] GET /api/v1/books - 200 OK (11ms)</div>
-          <div class="text-white">[API] POST /api/v1/borrow - 201 Created (42ms)</div>
-          <div class="text-neutral-500">// System state: stable //</div>
-        </div>
-      `
-    },
-    'readme-poetry': {
-      name: 'Readme When You Are',
-      tab: 'VerseEngine.js',
-      sector: 'INTERACTIVE WEB',
-      platform: 'DEPLOYED',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'An expressive, typography-oriented digital poetry interface featuring interactive text renders and scrolling layout animations.',
-      stack: ['HTML', 'Tailwind', 'JavaScript'],
-      repo: '',
-      live: 'https://readmewhenyouare.vercel.app/',
-      img: 'project ss/readme-poetry.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ node compiler.js --src=poetry/verse_manifest.json</div>
-          <div>[PARSER] Reading files from poetic assets...</div>
-          <div>[RENDERER] Setting up CSS typography spacing layouts...</div>
-          <div class="text-[#27c93f]">[OK] 12 poetry nodes initialized.</div>
-          <div>$ npm run dev</div>
-          <div class="text-white">&gt; verse-app@1.1.0 dev /poetry</div>
-          <div class="text-white">&gt; vite --port=3000</div>
-          <div class="text-neutral-500">// Server local URL: http://localhost:3000 //</div>
-          <div class="text-neutral-500">// HMR Hot Module Replacement active //</div>
-          <div class="text-white">[VITE] client connected.</div>
-          <div class="text-white">[VITE] HMR update - /src/style.css</div>
-        </div>
-      `
-    },
-    'touch-god': {
-      name: 'Touch By God Meet',
-      tab: 'WebRTC_Bridge.go',
-      sector: 'VIDEO CHAT',
-      platform: 'DEPLOYED',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'Collaborative web application featuring WebRTC video calling, room structures, and real-time chat operations.',
-      stack: ['HTML', 'Tailwind', 'JavaScript', 'WebRTC'],
-      repo: '',
-      live: 'https://touchbygodmeet.vercel.app/',
-      img: 'project ss/touch-god.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ go run main.go --port=8000</div>
-          <div>[RTC_CORE] Initializing WebRTC stun/turn peer broker...</div>
-          <div>[RTC_CORE] Default STUN server set to google:stun.l.google.com:19302</div>
-          <div class="text-[#27c93f]">[OK] Socket hub active. listening for SDP offers.</div>
-          <div class="text-neutral-500">// Active Rooms: 3 | Active Peer-connections: 6 //</div>
-          <div class="text-white">[SOCKET] New client joined Room #TouchByGod (ID: PEER_9A2F)</div>
-          <div class="text-[#27c93f]">[OK] WebRTC stream established between PEER_9A2F and PEER_2B48</div>
-        </div>
-      `
     },
     'redesign-penguin': {
       name: 'Redesign Penguin',
-      tab: 'PenguinBrand.css',
-      sector: 'BRANDING REDESIGN',
-      platform: 'DEPLOYED',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'Creative web design interface focused on editorial layouts, custom penguin character visuals, and animations.',
-      stack: ['HTML', 'Tailwind', 'JavaScript'],
+      tab: 'PENGUINBRAND.DSGN',
+      sector: 'BRANDING & WEB REDESIGN',
+      deckCategory: 'EDITORIAL DESIGN',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'UI/UX & Brand Designer',
+      year: '2024',
+      platform: 'Vercel Edge',
+      desc: 'Creative web design interface focused on editorial layouts, custom penguin character visuals, and smooth interactive animations.',
+      stack: ['HTML', 'Tailwind', 'JavaScript', 'Vector Art'],
       repo: '',
       live: 'https://redesignpenguinramos.vercel.app/',
       img: 'project ss/redesign-penguin.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ npm run build</div>
-          <div>[BUILDER] Bundling branding assets & sprites...</div>
-          <div>[CSS] Purging unused Tailwind utilities...</div>
-          <div class="text-[#27c93f]">[SUCCESS] Build completed in 1.8s.</div>
-          <div>$ vercel --prod</div>
-          <div class="text-white">[VERCEL] Deploying project to production...</div>
-          <div class="text-[#27c93f]">[OK] Live URL: redesignpenguinramos.vercel.app</div>
-        </div>
-      `
     },
-    'nathaniel-joy': {
-      name: "Wedding Website Design",
-      tab: 'WeddingWebsite.html',
-      sector: 'WEB DESIGN',
-      platform: 'DEPLOYED',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'An elegant and romantic wedding website design featuring beautiful layouts, event details, RSVP sections, and smooth transitions crafted for a memorable experience.',
-      stack: ['HTML', 'CSS', 'JavaScript'],
+    'coffee-website': {
+      name: 'Static Coffee Website',
+      tab: 'COFFEESHOWCASE.WEB',
+      sector: 'CREATIVE SHOWCASE',
+      deckCategory: 'RESPONSIVE WEB',
+      status: 'Online',
+      statusClass: 'online',
+      role: 'UI Designer & Dev',
+      year: '2023',
+      platform: 'Responsive Web',
+      desc: 'An elegant website for Coffee Lovers with responsive design. Showcases blends, brewing methods, and coffee-related content, featuring an interactive menu and tips blog.',
+      stack: ['HTML / CSS', 'JavaScript', 'Modern UI'],
       repo: '',
-      live: 'https://wedding-website-design-mauve.vercel.app/',
-      img: 'project ss/nathaniel-joy.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ npm run start</div>
-          <div>[SERVER] Spawning web server instance...</div>
-          <div class="text-[#27c93f]">[OK] Listening on netlify local node.</div>
-          <div>[ROUTER] Loading views (home, joy-nodes, gallery, about)...</div>
-          <div class="text-white">[ROUTER] GET /home - 200 OK (2ms)</div>
-        </div>
-      `
+      live: '',
+      img: 'project ss/coffee.png',
+    },
+    'library-mgmt': {
+      name: 'Library Database',
+      tab: 'LIBRARYSYS.CAT',
+      sector: 'CATALOG MANAGEMENT SYSTEM',
+      deckCategory: 'DATABASE SUITE',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Full-Stack Developer',
+      year: '2023',
+      platform: 'Web Application',
+      desc: 'Digital book catalog tracking database system managing user borrow sequences, inventory levels, and check-ins with fast search and filtering.',
+      stack: ['HTML', 'Tailwind', 'JavaScript', 'Database'],
+      repo: '',
+      live: 'https://library-managementjenelo.vercel.app/',
+      img: 'project ss/library-mgmt.png',
+    },
+    'readme-poetry': {
+      name: 'Readme When You Are',
+      tab: 'POETRYREAD.EXP',
+      sector: 'INTERACTIVE WEB EXPERIENCE',
+      deckCategory: 'CREATIVE DIGITAL ART',
+      status: 'Deployed',
+      statusClass: 'deployed',
+      role: 'Creative Developer',
+      year: '2023',
+      platform: 'Interactive Web',
+      desc: 'An expressive, typography-oriented digital poetry interface featuring interactive text renders and scrolling layout animations.',
+      stack: ['HTML', 'Tailwind', 'JavaScript', 'Typography'],
+      repo: '',
+      live: 'https://readmewhenyouare.vercel.app/',
+      img: 'project ss/readme-poetry.png',
     },
     'figma-workspaces': {
       name: 'Figma Design Workspaces',
-      tab: 'FigmaFrames.spec',
-      sector: 'UI/UX FRAMES',
-      platform: 'PROTOTYPES',
-      status: 'ONLINE',
-      statusClass: 'text-[#27c93f]',
-      desc: 'Interactive high-fidelity wireframes, UI kits, design systems, and components for client applications.',
-      stack: ['Figma', 'Wireframing', 'Design Systems'],
+      tab: 'FIGMAFRAMES.DSGN',
+      sector: 'UI/UX FRAMES & KITS',
+      deckCategory: 'DESIGN SYSTEMS',
+      status: 'Figma',
+      statusClass: 'figma',
+      role: 'Lead Product Designer',
+      year: '2024',
+      platform: 'Figma Prototypes',
+      desc: 'Interactive high-fidelity wireframes, UI kits, design systems, and components for client applications with responsive auto-layout frames.',
+      stack: ['Figma', 'Wireframing', 'Design Systems', 'Prototyping'],
       repo: 'https://www.figma.com/design/WwK4DitOf2Qn9ycKJi9mmb/Ahehhehe?node-id=2-2&t=BF84kQiqpgIxu4Vm-0',
       live: 'https://www.figma.com/design/f6G1fkM8za90l0ZOYI4nMl/Untitled?node-id=0-1&p=f&t=LdvI5Yhd7sEQ7iod-0',
       img: 'project ss/figma-workspaces.png',
-      terminal: `
-        <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-          <div class="text-white">$ figma-sync --id=WwK4DitOf2Qn9ycKJi9mmb</div>
-          <div>[FIGMA_API] Authenticating design token parser...</div>
-          <div>[FIGMA_API] Syncing file "Ahehhehe" frames & layouts...</div>
-          <div class="text-[#27c93f]">[OK] Figma Design assets parsed & verified.</div>
-          <div class="text-white">[FIGMA_API] Syncing file "Untitled" prototype connections...</div>
-          <div class="text-[#27c93f]">[OK] 5 responsive frames mapped to interaction flow nodes.</div>
-        </div>
-      `
-    }
+    },
   };
 
-  function setConsoleViewMode(mode, project, projectId) {
-    // Reset tab active indicators
-    [consoleTabPreview, consoleTabImage, consoleTabTerminalBtn].forEach(tab => {
-      if (tab) tab.classList.remove('console-tab-btn-active');
+  // DOM elements for Workstation Deck
+  const pwDetailImg        = document.getElementById('pw-detail-img');
+  const pwDetailIframe     = document.getElementById('pw-detail-iframe');
+  const pwIframeLoader     = document.getElementById('pw-iframe-loader');
+  const pwDetailVignette   = document.getElementById('pw-detail-vignette');
+  const pwToggleLiveBtn    = document.getElementById('pw-toggle-live-btn');
+  const pwToggleLiveText   = document.getElementById('pw-toggle-live-text');
+  const pwDetailLiveBadge  = document.getElementById('pw-detail-live-badge');
+
+  const pwDeckTab          = document.getElementById('pw-deck-tab');
+  const pwDeckCategory     = document.getElementById('pw-deck-category');
+  const pwDeckStatus       = document.getElementById('pw-deck-status');
+
+  const pwDetailTitle      = document.getElementById('pw-detail-title');
+  const pwDetailSector     = document.getElementById('pw-detail-sector');
+  const pwDetailDesc       = document.getElementById('pw-detail-desc');
+  const pwDetailStack      = document.getElementById('pw-detail-stack');
+
+  const pwDetailRole       = document.getElementById('pw-detail-role');
+  const pwDetailYear       = document.getElementById('pw-detail-year');
+  const pwDetailPlatform   = document.getElementById('pw-detail-platform');
+  const pwDetailBtnIcon    = document.getElementById('pw-detail-btn-icon');
+
+  const pwDetailBtnLive    = document.getElementById('pw-detail-btn-live');
+  const pwDetailBtnRepo    = document.getElementById('pw-detail-btn-repo');
+  const pwDetailNoLink     = document.getElementById('pw-detail-no-link');
+
+  const pwPageCurr         = document.getElementById('pw-page-curr');
+  const pwPageTotal        = document.getElementById('pw-page-total');
+  const pwPageRange        = document.getElementById('pw-page-range');
+  const pwPageDots         = document.getElementById('pw-page-dots');
+  const pwPrevBtn          = document.getElementById('pw-prev-btn');
+  const pwNextBtn          = document.getElementById('pw-next-btn');
+
+  const pwVisibleCount     = document.getElementById('pw-visible-count');
+
+  const pwProjectRows      = document.querySelectorAll('.pw-project-row');
+  const projectFilterBtns  = document.querySelectorAll('.project-filter-btn');
+
+  // --- 6-ITEM PAGINATION STATE ---
+  const PAGE_SIZE = 6;
+  let currentFilteredRows = [...pwProjectRows];
+  let currentPage = 1;
+  let currentActiveProjectId = 'bantay-pusta';
+  let isLiveModeActive = false;
+
+  function renderPage(page) {
+    const totalPages = Math.ceil(currentFilteredRows.length / PAGE_SIZE) || 1;
+    currentPage = Math.min(Math.max(1, page), totalPages);
+
+    const startIdx = (currentPage - 1) * PAGE_SIZE;
+    const endIdx = startIdx + PAGE_SIZE;
+
+    // Hide all rows
+    pwProjectRows.forEach(row => row.classList.add('hidden-page'));
+
+    // Show only the 6 rows on this page
+    currentFilteredRows.forEach((row, idx) => {
+      if (idx >= startIdx && idx < endIdx) {
+        row.classList.remove('hidden-page');
+      }
     });
 
-    // Hide all view screens
-    if (consoleProjectImg) consoleProjectImg.style.display = 'none';
-    if (consoleProjectTerminal) consoleProjectTerminal.style.display = 'none';
-    if (consoleProjectIframe) {
-      consoleProjectIframe.style.display = 'none';
-      consoleProjectIframe.src = '';
+    // Update pagination labels
+    if (pwPageCurr) pwPageCurr.textContent = String(currentPage).padStart(2, '0');
+    if (pwPageTotal) pwPageTotal.textContent = String(totalPages).padStart(2, '0');
+    if (pwPageRange) {
+      const from = currentFilteredRows.length > 0 ? startIdx + 1 : 0;
+      const to = Math.min(endIdx, currentFilteredRows.length);
+      pwPageRange.textContent = `${from}-${to} of ${currentFilteredRows.length}`;
     }
-    if (consoleProjectLoader) consoleProjectLoader.classList.add('hidden');
+    if (pwVisibleCount) {
+      pwVisibleCount.textContent = `${currentFilteredRows.length} Items`;
+    }
 
-    if (mode === 'preview' && project.live) {
-      if (consoleTabPreview) consoleTabPreview.classList.add('console-tab-btn-active');
-      if (consoleProjectLoader) consoleProjectLoader.classList.remove('hidden');
-      if (consoleProjectIframe) {
+    // Prev / Next button states
+    if (pwPrevBtn) {
+      pwPrevBtn.disabled = (currentPage <= 1);
+      pwPrevBtn.style.opacity = (currentPage <= 1) ? '0.3' : '1';
+      pwPrevBtn.style.pointerEvents = (currentPage <= 1) ? 'none' : 'auto';
+    }
+    if (pwNextBtn) {
+      pwNextBtn.disabled = (currentPage >= totalPages);
+      pwNextBtn.style.opacity = (currentPage >= totalPages) ? '0.3' : '1';
+      pwNextBtn.style.pointerEvents = (currentPage >= totalPages) ? 'none' : 'auto';
+    }
+
+    // Render interactive page dots
+    if (pwPageDots) {
+      pwPageDots.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = `pw-page-dot ${i === currentPage ? 'active' : ''}`;
+        dot.title = `Go to page ${i}`;
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          renderPage(i);
+          const firstOnPage = currentFilteredRows[(i - 1) * PAGE_SIZE];
+          if (firstOnPage) firstOnPage.click();
+        });
+        pwPageDots.appendChild(dot);
+      }
+    }
+  }
+
+  // --- SHOWCASE DECK SWITCHER ---
+  function switchProjectNew(projectId) {
+    const project = projectData[projectId];
+    if (!project) return;
+    currentActiveProjectId = projectId;
+    isLiveModeActive = false;
+
+    // Reset iframe
+    if (pwDetailIframe) {
+      pwDetailIframe.src = '';
+      pwDetailIframe.classList.add('hidden');
+    }
+    if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+
+    const hasImg = Boolean(project.img && project.img.trim() !== '');
+    const hasLive = Boolean(project.live && project.live.trim() !== '');
+    const hasRepo = Boolean(project.repo && project.repo.trim() !== '');
+
+    // Image / Live accuracy: if there is no image, use the live website!
+    if (hasImg) {
+      // Show screenshot
+      if (pwDetailIframe) {
+        pwDetailIframe.classList.add('hidden');
+        pwDetailIframe.style.display = 'none';
+        pwDetailIframe.src = '';
+      }
+      if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+      if (pwDetailVignette) {
+        pwDetailVignette.classList.remove('hidden');
+        pwDetailVignette.style.display = 'block';
+      }
+      if (pwDetailImg) {
+        pwDetailImg.classList.remove('hidden');
+        pwDetailImg.style.display = 'block';
+        pwDetailImg.style.opacity = '0';
+        pwDetailImg.style.transform = 'scale(0.97)';
+        pwDetailImg.onerror = () => {
+          if (hasLive) {
+            pwDetailImg.classList.add('hidden');
+            pwDetailImg.style.display = 'none';
+            if (pwDetailVignette) pwDetailVignette.style.display = 'none';
+            if (pwDetailIframe) {
+              let embedUrl = project.live;
+              if (projectId === 'figma-workspaces') {
+                embedUrl = 'https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(project.live);
+              }
+              if (pwIframeLoader) pwIframeLoader.classList.remove('hidden');
+              pwDetailIframe.src = embedUrl;
+              pwDetailIframe.classList.remove('hidden');
+              pwDetailIframe.style.display = 'block';
+              pwDetailIframe.onload = () => {
+                if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+              };
+            }
+          }
+        };
+        setTimeout(() => {
+          pwDetailImg.src = project.img;
+          pwDetailImg.style.opacity = '1';
+          pwDetailImg.style.transform = 'scale(1)';
+        }, 150);
+      }
+
+      // If project ALSO has live link, allow user to toggle Live View
+      if (pwToggleLiveBtn) {
+        if (hasLive) {
+          pwToggleLiveBtn.classList.remove('hidden');
+          pwToggleLiveBtn.classList.add('inline-flex');
+          if (pwToggleLiveText) pwToggleLiveText.textContent = 'Live View';
+        } else {
+          pwToggleLiveBtn.classList.remove('inline-flex');
+          pwToggleLiveBtn.classList.add('hidden');
+        }
+      }
+    } else if (hasLive) {
+      // NO IMAGE: Automatically use the live embed!
+      if (pwDetailImg) {
+        pwDetailImg.classList.add('hidden');
+        pwDetailImg.style.display = 'none';
+      }
+      if (pwDetailVignette) {
+        pwDetailVignette.classList.add('hidden');
+        pwDetailVignette.style.display = 'none';
+      }
+      if (pwDetailIframe) {
         let embedUrl = project.live;
         if (projectId === 'figma-workspaces') {
           embedUrl = 'https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(project.live);
         }
-        consoleProjectIframe.src = embedUrl;
-        consoleProjectIframe.style.display = 'block';
-        
-        consoleProjectIframe.onload = () => {
-          if (consoleProjectLoader) consoleProjectLoader.classList.add('hidden');
+        if (pwIframeLoader) pwIframeLoader.classList.remove('hidden');
+        pwDetailIframe.src = embedUrl;
+        pwDetailIframe.classList.remove('hidden');
+        pwDetailIframe.style.display = 'block';
+        pwDetailIframe.onload = () => {
+          if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
         };
       }
-    } else if (mode === 'image' && project.img) {
-      if (consoleTabImage) consoleTabImage.classList.add('console-tab-btn-active');
-      if (consoleProjectImg) {
-        consoleProjectImg.src = project.img;
-        consoleProjectImg.style.display = 'block';
+      if (pwToggleLiveBtn) {
+        pwToggleLiveBtn.classList.remove('inline-flex');
+        pwToggleLiveBtn.classList.add('hidden');
       }
     } else {
-      // Fallback Terminal Mode
-      if (consoleTabTerminalBtn) consoleTabTerminalBtn.classList.add('console-tab-btn-active');
-      if (consoleProjectTerminal) {
-        consoleProjectTerminal.innerHTML = project.terminal || `
-          <div class="flex flex-col gap-1.5 select-none text-[8.5px] leading-relaxed">
-            <div class="text-white">$ cat info.log</div>
-            <div>[SYS_INFO] Core terminal initialized. Ready for commands.</div>
-          </div>
-        `;
-        consoleProjectTerminal.style.display = 'block';
+      // Neither image nor live
+      if (pwDetailImg) {
+        pwDetailImg.classList.add('hidden');
+        pwDetailImg.style.display = 'none';
       }
-    }
-  }
-
-  function switchProject(projectId) {
-    const project = projectData[projectId];
-    if (!project) return;
-
-    // Trigger glitch visual animation
-    if (consoleScreenContent) {
-      consoleScreenContent.classList.remove('console-transition');
-      void consoleScreenContent.offsetWidth; // Force reflow
-      consoleScreenContent.classList.add('console-transition');
+      if (pwDetailIframe) {
+        pwDetailIframe.classList.add('hidden');
+        pwDetailIframe.style.display = 'none';
+        pwDetailIframe.src = '';
+      }
+      if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+      if (pwToggleLiveBtn) pwToggleLiveBtn.classList.add('hidden');
+      if (pwDetailVignette) pwDetailVignette.classList.add('hidden');
     }
 
-    // Update Tab and Title text
-    if (consoleTabName) consoleTabName.textContent = project.tab;
-    if (consoleProjectTitle) consoleProjectTitle.textContent = project.name;
-    if (consoleProjectDesc) consoleProjectDesc.textContent = project.desc;
-
-    // Update Meta specs
-    if (consoleMetaSector) consoleMetaSector.textContent = project.sector;
-    if (consoleMetaPlatform) consoleMetaPlatform.textContent = project.platform;
-    if (consoleMetaStatus) {
-      consoleMetaStatus.textContent = project.status;
-      consoleMetaStatus.className = `text-[9px] uppercase font-bold tracking-tight ${project.statusClass}`;
+    // Top window bar
+    if (pwDeckTab) pwDeckTab.textContent = project.tab || (project.name.toUpperCase() + '.SYS');
+    if (pwDeckCategory) pwDeckCategory.textContent = project.deckCategory || 'WEB APPLICATION';
+    if (pwDeckStatus) {
+      pwDeckStatus.className = `pw-status-pill ${project.statusClass} text-[9px] px-2.5 py-0.5 rounded-full`;
+      pwDeckStatus.innerHTML = `<span class="pw-status-dot"></span>${project.status}`;
     }
 
-    // Update Tech Stack badges
-    if (consoleProjectStack) {
-      consoleProjectStack.innerHTML = '';
+    // Main detail text
+    if (pwDetailTitle)  pwDetailTitle.textContent  = project.name;
+    if (pwDetailSector) pwDetailSector.textContent = project.sector;
+    if (pwDetailDesc)   pwDetailDesc.textContent   = project.desc;
+
+    // Stack pills
+    if (pwDetailStack) {
+      pwDetailStack.innerHTML = '';
       project.stack.forEach(tech => {
         const span = document.createElement('span');
-        span.className = 'bg-white/[0.03] border border-white/[0.05] text-[7.5px] font-mono text-neutral-400 uppercase tracking-widest px-1.5 py-0.5 rounded';
+        span.className = 'pw-stack-tag';
         span.textContent = tech;
-        consoleProjectStack.appendChild(span);
+        pwDetailStack.appendChild(span);
       });
     }
 
-    // Update URL Address Bar
-    const consoleUrlText = document.getElementById('console-url-text');
-    if (consoleUrlText) {
-      consoleUrlText.textContent = project.live || `https://${projectId}.local`;
+    // Bottom Specs Strip
+    if (pwDetailRole)     pwDetailRole.textContent = project.role || 'Full-Stack Developer';
+    if (pwDetailYear)     pwDetailYear.textContent = project.year || '2024';
+    if (pwDetailPlatform) pwDetailPlatform.textContent = project.platform || 'Web Application';
+
+    // Direct launch icon button
+    const primaryLink = project.live || project.repo || '#';
+    if (pwDetailBtnIcon) {
+      pwDetailBtnIcon.href = primaryLink;
+      pwDetailBtnIcon.style.opacity = (hasLive || hasRepo) ? '1' : '0.3';
+      pwDetailBtnIcon.style.pointerEvents = (hasLive || hasRepo) ? 'auto' : 'none';
     }
 
-    // Update CTAs
-    if (consoleBtnRepo) {
-      if (project.repo) {
-        consoleBtnRepo.href = project.repo;
-        consoleBtnRepo.style.display = 'inline-block';
-        if (projectId === 'figma-workspaces') {
-          consoleBtnRepo.textContent = '[WORK_1] ↗';
-        } else {
-          consoleBtnRepo.textContent = '[EXPLORE_SOURCE] ↗';
-        }
+    // Primary CTA button
+    if (pwDetailBtnLive) {
+      if (hasLive) {
+        pwDetailBtnLive.href = project.live;
+        pwDetailBtnLive.classList.remove('hidden');
+        pwDetailBtnLive.classList.add('inline-flex');
+        const btnLabel = pwDetailBtnLive.querySelector('span:nth-child(2)');
+        if (btnLabel) btnLabel.textContent = projectId === 'figma-workspaces' ? 'View Prototype' : 'View Project';
       } else {
-        consoleBtnRepo.href = '#';
-        consoleBtnRepo.style.display = 'none';
+        pwDetailBtnLive.classList.remove('inline-flex');
+        pwDetailBtnLive.classList.add('hidden');
       }
     }
-    if (consoleBtnLive) {
-      if (project.live) {
-        consoleBtnLive.href = project.live;
-        consoleBtnLive.style.display = 'inline-block';
-        if (projectId === 'figma-workspaces') {
-          consoleBtnLive.textContent = '[WORK_2] ↗';
-        } else {
-          consoleBtnLive.textContent = '[LAUNCH_PORTAL] ↗';
-        }
+
+    // Secondary repo/source button
+    if (pwDetailBtnRepo) {
+      if (hasRepo) {
+        pwDetailBtnRepo.href = project.repo;
+        pwDetailBtnRepo.classList.remove('hidden');
+        pwDetailBtnRepo.classList.add('inline-flex');
+        const repoLabel = pwDetailBtnRepo.querySelector('span:nth-child(1)');
+        if (repoLabel) repoLabel.textContent = projectId === 'figma-workspaces' ? 'Figma File' : 'Source';
       } else {
-        consoleBtnLive.href = '#';
-        consoleBtnLive.style.display = 'none';
+        pwDetailBtnRepo.classList.remove('inline-flex');
+        pwDetailBtnRepo.classList.add('hidden');
       }
     }
 
-    // Determine which editor tabs are available
-    if (project.live) {
-      if (consoleTabPreview) consoleTabPreview.style.display = 'inline-block';
-      if (consoleTabVisit) {
-        consoleTabVisit.href = project.live;
-        consoleTabVisit.style.display = 'inline-flex';
-      }
-      if (consoleTabImage) consoleTabImage.style.display = 'none';
-    } else {
-      if (consoleTabPreview) consoleTabPreview.style.display = 'none';
-      if (consoleTabVisit) consoleTabVisit.style.display = 'none';
-      if (project.img) {
-        if (consoleTabImage) consoleTabImage.style.display = 'inline-block';
+    // Internal notice
+    if (pwDetailNoLink) {
+      pwDetailNoLink.style.display = (!hasLive && !hasRepo) ? 'inline-block' : 'none';
+    }
+
+    // Corner external link shortcut
+    if (pwDetailLiveBadge) {
+      if (hasLive) {
+        pwDetailLiveBadge.href = project.live;
+        pwDetailLiveBadge.classList.remove('hidden');
+        pwDetailLiveBadge.classList.add('flex');
       } else {
-        if (consoleTabImage) consoleTabImage.style.display = 'none';
+        pwDetailLiveBadge.classList.remove('flex');
+        pwDetailLiveBadge.classList.add('hidden');
       }
     }
-
-    // Determine default mode on selection
-    let defaultMode = 'terminal';
-    if (project.live) {
-      defaultMode = 'preview';
-    } else if (project.img) {
-      defaultMode = 'image';
-    }
-
-    setConsoleViewMode(defaultMode, project, projectId);
   }
 
-  // Bind click handlers to manifest elements
-  manifestItems.forEach(item => {
-    item.addEventListener('click', () => {
-      manifestItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      
-      const projectId = item.getAttribute('data-project-id');
-      switchProject(projectId);
+  // --- LIVE VIEW TOGGLE BUTTON LISTENER ---
+  if (pwToggleLiveBtn) {
+    pwToggleLiveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const project = projectData[currentActiveProjectId];
+      if (!project || !project.live) return;
 
-      if (window.innerWidth < 1024) {
-        const consoleEl = document.querySelector('.lg:col-span-7');
-        if (consoleEl) {
-          consoleEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (!isLiveModeActive) {
+        // Switch to Live Iframe View
+        isLiveModeActive = true;
+        if (pwDetailImg) pwDetailImg.classList.add('hidden');
+        if (pwDetailVignette) pwDetailVignette.classList.add('hidden');
+        if (pwDetailIframe) {
+          let embedUrl = project.live;
+          if (currentActiveProjectId === 'figma-workspaces') {
+            embedUrl = 'https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(project.live);
+          }
+          if (pwIframeLoader) pwIframeLoader.classList.remove('hidden');
+          pwDetailIframe.src = embedUrl;
+          pwDetailIframe.classList.remove('hidden');
+          pwDetailIframe.onload = () => {
+            if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+          };
         }
+        if (pwToggleLiveText) pwToggleLiveText.textContent = 'Screenshot';
+      } else {
+        // Switch back to Screenshot View
+        isLiveModeActive = false;
+        if (pwDetailIframe) {
+          pwDetailIframe.classList.add('hidden');
+          pwDetailIframe.src = '';
+        }
+        if (pwIframeLoader) pwIframeLoader.classList.add('hidden');
+        if (pwDetailImg) {
+          pwDetailImg.classList.remove('hidden');
+          pwDetailImg.style.opacity = '1';
+        }
+        if (pwDetailVignette) pwDetailVignette.classList.remove('hidden');
+        if (pwToggleLiveText) pwToggleLiveText.textContent = 'Live View';
+      }
+    });
+  }
+
+  // --- PROJECT ROWS CLICK LISTENER ---
+  pwProjectRows.forEach(row => {
+    row.addEventListener('click', () => {
+      pwProjectRows.forEach(r => r.classList.remove('active'));
+      row.classList.add('active');
+      const projectId = row.getAttribute('data-project-id');
+      switchProjectNew(projectId);
+
+      // Smooth scroll to showcase deck on mobile
+      if (window.innerWidth < 1024) {
+        const deck = document.getElementById('pw-detail-img');
+        if (deck) deck.closest('.lg\\:col-span-7')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     });
   });
 
+  // --- PAGER PREV / NEXT BUTTONS ---
+  if (pwPrevBtn) {
+    pwPrevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        renderPage(currentPage - 1);
+        const firstOnPage = currentFilteredRows[(currentPage - 1) * PAGE_SIZE];
+        if (firstOnPage) firstOnPage.click();
+      }
+    });
+  }
 
-  // Bind click handlers to editor tabs
-  if (consoleTabPreview) {
-    consoleTabPreview.addEventListener('click', () => {
-      const activeBtn = document.querySelector('.project-manifest-item.active');
-      const activeId = activeBtn ? activeBtn.getAttribute('data-project-id') : null;
-      if (activeId && projectData[activeId]) {
-        setConsoleViewMode('preview', projectData[activeId], activeId);
+  if (pwNextBtn) {
+    pwNextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(currentFilteredRows.length / PAGE_SIZE) || 1;
+      if (currentPage < totalPages) {
+        renderPage(currentPage + 1);
+        const firstOnPage = currentFilteredRows[(currentPage - 1) * PAGE_SIZE];
+        if (firstOnPage) firstOnPage.click();
       }
     });
   }
-  if (consoleTabImage) {
-    consoleTabImage.addEventListener('click', () => {
-      const activeBtn = document.querySelector('.project-manifest-item.active');
-      const activeId = activeBtn ? activeBtn.getAttribute('data-project-id') : null;
-      if (activeId && projectData[activeId]) {
-        setConsoleViewMode('image', projectData[activeId], activeId);
+
+  // --- FILTER PILLS LISTENER ---
+  projectFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      projectFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+
+      // Filter rows
+      currentFilteredRows = [...pwProjectRows].filter(row => {
+        const cat = row.getAttribute('data-category');
+        return (filter === 'all' || cat === filter);
+      });
+
+      // Render page 1 of filtered set
+      renderPage(1);
+
+      // Auto-select first row on page 1
+      if (currentFilteredRows.length > 0) {
+        currentFilteredRows[0].click();
       }
     });
-  }
-  if (consoleTabTerminalBtn) {
-    consoleTabTerminalBtn.addEventListener('click', () => {
-      const activeBtn = document.querySelector('.project-manifest-item.active');
-      const activeId = activeBtn ? activeBtn.getAttribute('data-project-id') : null;
-      if (activeId && projectData[activeId]) {
-        setConsoleViewMode('terminal', projectData[activeId], activeId);
-      }
-    });
-  }
-  if (consoleTabTerminalBtn) {
-    consoleTabTerminalBtn.addEventListener('click', () => {
-      const activeBtn = document.querySelector('.project-manifest-item.active');
-      const activeId = activeBtn ? activeBtn.getAttribute('data-project-id') : null;
-      if (activeId && projectData[activeId]) {
-        setConsoleViewMode('terminal', projectData[activeId], activeId);
-      }
-    });
-  }
+  });
+
+  // Initialize Page 1 and default project
+  renderPage(1);
+  switchProjectNew('bantay-pusta');
 
   // --- INTERACTIVE SERVICE CHANNELS (SECTION 05) ---
   const serviceData = {
@@ -1031,10 +1158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: `[PACKETS] OBJECTIVE: "${objectiveVal.toUpperCase()}"`, type: 'default' },
         { text: `[PACKETS] SENDER_ALIAS: "${nameVal.toUpperCase()}"`, type: 'default' },
         { text: `[PACKETS] SENDER_ROUTE: "${emailVal.toUpperCase()}"`, type: 'default' },
-        { text: `[PROGRESS] SENDING PACKETS: ░░░░░░░░░░ 0%`, type: 'default', delay: 150 },
-        { text: `[PROGRESS] SENDING PACKETS: ████░░░░░░ 40%`, type: 'default', delay: 150 },
-        { text: `[PROGRESS] SENDING PACKETS: ████████░░ 80%`, type: 'default', delay: 150 },
-        { text: `[PROGRESS] SENDING PACKETS: ██████████ 100%`, type: 'default', delay: 150 }
+        { text: `[PROGRESS] SENDING PACKETS: â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘â–‘ 0%`, type: 'default', delay: 150 },
+        { text: `[PROGRESS] SENDING PACKETS: â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘â–‘â–‘â–‘â–‘ 40%`, type: 'default', delay: 150 },
+        { text: `[PROGRESS] SENDING PACKETS: â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–‘ 80%`, type: 'default', delay: 150 },
+        { text: `[PROGRESS] SENDING PACKETS: â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ 100%`, type: 'default', delay: 150 }
       ];
 
       let logIdx = 0;
@@ -1094,58 +1221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- BENTO SPOTLIGHT COORDS & CATEGORY FILTERS ---
-  const projectCards = document.querySelectorAll('.project-card');
-  projectCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mx', `${x}px`);
-      card.style.setProperty('--my', `${y}px`);
-    });
-  });
-
-  const filterBtns = document.querySelectorAll('.project-filter-btn');
-  const manifestItemsList = document.querySelectorAll('.project-manifest-item');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filterVal = btn.getAttribute('data-filter');
-      let firstVisibleCard = null;
-
-      manifestItemsList.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterVal === 'all' || category === filterVal) {
-          card.style.display = 'flex';
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
-          if (!firstVisibleCard) {
-            firstVisibleCard = card;
-          }
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      // Switch console to the first visible card in the filtered list
-      const currentActive = document.querySelector('.project-manifest-item.active');
-      if (currentActive && currentActive.style.display === 'none' && firstVisibleCard) {
-        currentActive.classList.remove('active');
-        firstVisibleCard.classList.add('active');
-        const newProjId = firstVisibleCard.getAttribute('data-project-id');
-        switchProject(newProjId);
-      }
-    });
-  });
 
   // --- TELEMETRY PORTAL LOGIC & VISITOR COUNTER ---
   const OBFUSCATED_TOKEN = "dXRfUmFyckN5VkdzOUZVWHc4WjJkVzllR2U1OFhpbnZZSXRKVWM1VDl1ZQ==";
@@ -1442,25 +1517,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnTabSystems && btnTabCreative && systemsSection && creativeSection) {
     btnTabSystems.addEventListener('click', () => {
-      btnTabSystems.classList.add('border-white', 'text-white', 'bg-white/5');
-      btnTabSystems.classList.remove('border-white/5', 'text-neutral-500');
+      btnTabSystems.classList.add('active', 'text-white', 'bg-white/10');
+      btnTabSystems.classList.remove('text-neutral-500');
       
-      btnTabCreative.classList.remove('border-white', 'text-white', 'bg-white/5');
-      btnTabCreative.classList.add('border-white/5', 'text-neutral-500');
+      btnTabCreative.classList.remove('active', 'text-white', 'bg-white/10');
+      btnTabCreative.classList.add('text-neutral-500');
       
       systemsSection.classList.remove('hidden');
+      systemsSection.classList.add('flex');
       creativeSection.classList.add('hidden');
+      creativeSection.classList.remove('flex');
     });
 
     btnTabCreative.addEventListener('click', () => {
-      btnTabCreative.classList.add('border-white', 'text-white', 'bg-white/5');
-      btnTabCreative.classList.remove('border-white/5', 'text-neutral-500');
+      btnTabCreative.classList.add('active', 'text-white', 'bg-white/10');
+      btnTabCreative.classList.remove('text-neutral-500');
       
-      btnTabSystems.classList.remove('border-white', 'text-white', 'bg-white/5');
-      btnTabSystems.classList.add('border-white/5', 'text-neutral-500');
+      btnTabSystems.classList.remove('active', 'text-white', 'bg-white/10');
+      btnTabSystems.classList.add('text-neutral-500');
       
       systemsSection.classList.add('hidden');
+      systemsSection.classList.remove('flex');
       creativeSection.classList.remove('hidden');
+      creativeSection.classList.add('flex');
     });
   }
 
@@ -1634,8 +1713,5 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchVisitorCount();
   checkSessionState();
   updateTelemetryLatency();
-
-  // Load default featured project (Bantay Pusta live)
-  switchProject('bantay-pusta');
 });
 

@@ -111,6 +111,79 @@ body {
   animation: logoFloat 15s ease-in-out infinite;
 }
 
+/* Hero Watermark & Kinetic Badge Animations */
+@keyframes spinBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-badge {
+  animation: spinBadge 22s linear infinite;
+}
+.animate-spin-badge:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeFlow {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee-flow {
+  display: flex;
+  width: 200%;
+  animation: marqueeFlow 40s linear infinite;
+  will-change: transform;
+}
+
+.text-stroke-watermark {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.06);
+  color: transparent;
+  user-select: none;
+}
+
+.tech-tag-pill {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #a3a3a3;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+}
+.tech-tag-pill:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Abstract Brand Cubes Floating Animation */
+@keyframes cubeFloat1 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(25deg); }
+  50% { transform: translate3d(0, -18px, 0) rotate(28deg); }
+}
+@keyframes cubeFloat2 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-22deg); }
+  50% { transform: translate3d(0, -14px, 0) rotate(-19deg); }
+}
+@keyframes cubeFloat3 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(35deg); }
+  50% { transform: translate3d(0, -20px, 0) rotate(31deg); }
+}
+@keyframes cubeFloat4 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-15deg); }
+  50% { transform: translate3d(0, -12px, 0) rotate(-18deg); }
+}
+
+.animate-cube-1 { animation: cubeFloat1 10s ease-in-out infinite; }
+.animate-cube-2 { animation: cubeFloat2 12s ease-in-out infinite; }
+.animate-cube-3 { animation: cubeFloat3 9s ease-in-out infinite; }
+.animate-cube-4 { animation: cubeFloat4 11s ease-in-out infinite; }
+
 /* --- CUSTOM CURSOR --- */
 .custom-cursor-dot,
 .custom-cursor-outline {
@@ -367,12 +440,6 @@ body {
   transform: translate(15px, -50%) scale(1);
 }
 
-/* Category Filter Buttons Active state */
-.project-filter-btn.active {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border-color: #ffffff !important;
-}
 
 /* Custom scrollbar for manifest */
 .custom-scrollbar::-webkit-scrollbar {
@@ -532,3 +599,337 @@ body {
     min-height: 100vh;
   }
 }
+
+/* ============================================
+   FEATURED WORK SECTION — NEW DESIGN STYLES
+   ============================================ */
+
+/* Filter pills with counter badge */
+.pw-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #888;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pw-filter-pill:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+.pw-filter-pill.active {
+  color: #fff !important;
+  background: rgba(236, 0, 110, 0.14) !important;
+  border-color: rgba(236, 0, 110, 0.6) !important;
+  box-shadow: 0 0 20px rgba(236, 0, 110, 0.25) !important;
+}
+.pw-filter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #555;
+  transition: all 0.2s ease;
+}
+.pw-filter-pill.active .pw-filter-dot {
+  background: #EC006E;
+  box-shadow: 0 0 8px #EC006E;
+}
+.pw-filter-count {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #666;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.2s ease;
+}
+.pw-filter-pill.active .pw-filter-count {
+  color: #EC006E;
+  background: rgba(236, 0, 110, 0.2);
+}
+
+/* Tab switcher */
+.tab-switch-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Pager dots for 6-item pagination */
+.pw-page-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pw-page-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.pw-page-dot.active {
+  width: 18px;
+  background: #EC006E;
+  box-shadow: 0 0 10px rgba(236, 0, 110, 0.7);
+}
+.pw-project-row.hidden-page {
+  display: none !important;
+}
+
+/* Custom sleek scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(236, 0, 110, 0.5);
+}
+
+/* Project row buttons (left list) */
+.pw-project-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.015);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #999;
+  outline: none;
+}
+.pw-project-row:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.035);
+  color: #fff;
+  transform: translateX(2px);
+}
+.pw-project-row.active {
+  border-color: rgba(236, 0, 110, 0.35);
+  background: linear-gradient(90deg, rgba(236, 0, 110, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+.pw-project-row.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: #EC006E;
+  box-shadow: 0 0 10px #EC006E;
+}
+.pw-project-row.hidden-row {
+  display: none !important;
+}
+
+/* Project row thumbnail */
+.pw-row-thumb {
+  width: 48px;
+  height: 38px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000;
+}
+.pw-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+}
+.pw-project-row:hover .pw-row-thumb img {
+  transform: scale(1.08);
+}
+
+.pw-row-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: #EC006E;
+  font-family: 'Space Grotesk', monospace;
+  min-width: 18px;
+  opacity: 0.8;
+}
+.pw-project-row.active .pw-row-num {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(236, 0, 110, 0.6);
+}
+
+.pw-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.pw-row-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pw-row-sub {
+  font-size: 9.5px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pw-project-row.active .pw-row-sub {
+  color: #888;
+}
+
+.pw-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Status Pill with dot */
+.pw-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.pw-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.pw-status-pill.online,
+.pw-status-pill.production,
+.pw-status-pill.deployed {
+  color: #27c93f;
+  border-color: rgba(39, 201, 63, 0.25);
+  background: rgba(39, 201, 63, 0.05);
+}
+.pw-status-pill.online .pw-status-dot,
+.pw-status-pill.production .pw-status-dot,
+.pw-status-pill.deployed .pw-status-dot {
+  background: #27c93f;
+  box-shadow: 0 0 6px #27c93f;
+}
+
+.pw-status-pill.stable {
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.25);
+  background: rgba(96, 165, 250, 0.05);
+}
+.pw-status-pill.stable .pw-status-dot {
+  background: #60a5fa;
+  box-shadow: 0 0 6px #60a5fa;
+}
+
+.pw-status-pill.offline {
+  color: #777;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+.pw-status-pill.offline .pw-status-dot {
+  background: #666;
+}
+
+.pw-status-pill.figma {
+  color: #a78bfa;
+  border-color: rgba(167, 139, 250, 0.25);
+  background: rgba(167, 139, 250, 0.05);
+}
+.pw-status-pill.figma .pw-status-dot {
+  background: #a78bfa;
+  box-shadow: 0 0 6px #a78bfa;
+}
+
+.pw-row-arrow {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+.pw-project-row:hover .pw-row-arrow,
+.pw-project-row.active .pw-row-arrow {
+  color: #EC006E;
+  transform: translateX(2px);
+}
+
+/* Stack tags in detail panel */
+.pw-stack-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #bbb;
+  transition: all 0.2s ease;
+}
+.pw-stack-tag:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Detail panel image transition */
+#pw-detail-img {
+  transition: opacity 0.35s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Creative card subtle lift on hover */
+.creative-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   SECTION 03: MINIMALIST WORKFLOW TIMELINE
+   ============================================================ */
+
+.process-step-node {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step-node:hover {
+  transform: translateY(-2px);
+}
+
+
